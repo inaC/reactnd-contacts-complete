@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import PropTypes from 'prop-types'
 /*
 	we are going to build a component which will display the contact list :)
 	such component will receive the contact list 
@@ -26,6 +26,12 @@ class ListContacts extends Component {
 			</ol>
 		)
 	}
+
+}
+
+ListContacts.propTypes = {
+		contacts: PropTypes.array.isRequired,
+		onDeleteContact: PropTypes.func.isRequired
 
 }
 //in order to import into App.js file
