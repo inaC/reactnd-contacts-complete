@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
@@ -7,7 +8,6 @@ class ListContacts extends Component {
 	static propTypes = {
 			contacts: PropTypes.array.isRequired,
 			onDeleteContact: PropTypes.func.isRequired
-
 	}
 
 	state = {
@@ -32,12 +32,17 @@ class ListContacts extends Component {
 			<div className='list-contacts'>
 				<div className='list-contacts-top'>
 					<input 
-						className = 'search-contacts'
+						className='search-contacts'
 						type='text' 
 						placeholder='Search for contact'
 						value={query}
 						onChange={(event) => this.setQuery(event.target.value)} 
 					/>
+					<Link
+						className='add-contact'
+						to='/create'
+						title='Add Contact'
+					> Add Contact </Link>
 				</div>
 				{contacts.length !== showingContacts.length && (
 					<div className = 'showing-contacts'>
@@ -53,13 +58,12 @@ class ListContacts extends Component {
 								<p> {contact.name} </p>
 								<p> {contact.email} </p>
 							</div>
-							<button onClick = {()=> onDeleteContact(contact)} className='contact-remove'> Remove </button>
+							<button title='Remove Contact' onClick = {()=> onDeleteContact(contact)} className='contact-remove'> Remove </button>
 						</li>)}
 				</ol>
 			</div>
 		)
 	}
-
 }
 
 //in order to import into App.js file
